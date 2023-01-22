@@ -30,9 +30,11 @@ if 'offset' in board.get("build").keys():
 
 	for i, flag in enumerate(env["LINKFLAGS"]):
 		if "-Wl,--defsym=LD_FLASH_OFFSET" in flag:
-			env["LINKFLAGS"][i] = "-Wl,--defsym=LD_FLASH_OFFSET=" + LD_FLASH_OFFSET
+			env["LINKFLAGS"][i] = f"-Wl,--defsym=LD_FLASH_OFFSET={LD_FLASH_OFFSET}"
 		if "-Wl,--defsym=LD_MAX_DATA_SIZE" in flag:
-			env["LINKFLAGS"][i] = "-Wl,--defsym=LD_MAX_DATA_SIZE=" + str(maximum_ram_size - 40)
+			env["LINKFLAGS"][
+				i
+			] = f"-Wl,--defsym=LD_MAX_DATA_SIZE={str(maximum_ram_size - 40)}"
 
 #
 # Only copy the file if there's no encrypt

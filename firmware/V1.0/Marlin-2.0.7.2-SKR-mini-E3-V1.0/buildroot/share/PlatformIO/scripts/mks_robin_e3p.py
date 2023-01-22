@@ -10,7 +10,7 @@ env['CPPDEFINES'].append(("VECT_TAB_ADDR", "0x08007000"))
 custom_ld_script = os.path.abspath("buildroot/share/PlatformIO/ldscripts/mks_robin_e3p.ld")
 for i, flag in enumerate(env["LINKFLAGS"]):
     if "-Wl,-T" in flag:
-        env["LINKFLAGS"][i] = "-Wl,-T" + custom_ld_script
+        env["LINKFLAGS"][i] = f"-Wl,-T{custom_ld_script}"
     elif flag == "-T":
         env["LINKFLAGS"][i + 1] = custom_ld_script
 
@@ -22,7 +22,7 @@ def encrypt(source, target, env):
     key = [0xA3, 0xBD, 0xAD, 0x0D, 0x41, 0x11, 0xBB, 0x8D, 0xDC, 0x80, 0x2D, 0xD0, 0xD2, 0xC4, 0x9B, 0x1E, 0x26, 0xEB, 0xE3, 0x33, 0x4A, 0x15, 0xE4, 0x0A, 0xB3, 0xB1, 0x3C, 0x93, 0xBB, 0xAF, 0xF7, 0x3E]
 
     firmware = open(target[0].path, "rb")
-    robin = open(target[0].dir.path +'/Robin_e3p.bin', "wb")
+    robin = open(f'{target[0].dir.path}/Robin_e3p.bin', "wb")
     length = os.path.getsize(target[0].path)
     position = 0
     try:

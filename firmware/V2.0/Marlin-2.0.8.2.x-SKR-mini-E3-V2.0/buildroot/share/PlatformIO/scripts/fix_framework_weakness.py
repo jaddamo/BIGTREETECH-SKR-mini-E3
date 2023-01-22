@@ -40,5 +40,5 @@ if int(txBuf) < 64:
 	txBuf = "64"
 
 build_flags = env.get('BUILD_FLAGS')
-build_flags.append("-DUSART_RX_BUF_SIZE=" + rxBuf + " -DUSART_TX_BUF_SIZE=" + txBuf)
+build_flags.append(f"-DUSART_RX_BUF_SIZE={rxBuf} -DUSART_TX_BUF_SIZE={txBuf}")
 env.Replace(BUILD_FLAGS=build_flags)
