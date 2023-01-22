@@ -11,9 +11,8 @@ except ImportError:
 def parse_pkg_uri(spec):
     if PackageManager.__name__ == 'PackageSpec':
         return PackageManager(spec).name
-    else:
-        name, _, _ = PackageManager.parse_pkg_uri(spec)
-        return name
+    name, _, _ = PackageManager.parse_pkg_uri(spec)
+    return name
 
 def copytree(src, dst, symlinks=False, ignore=None):
     for item in os.listdir(src):

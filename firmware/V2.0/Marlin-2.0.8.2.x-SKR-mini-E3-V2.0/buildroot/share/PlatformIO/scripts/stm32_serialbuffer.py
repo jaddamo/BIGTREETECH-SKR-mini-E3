@@ -18,6 +18,6 @@ rxBuf = str(max(64, int(mf["RX_BUFFER_SIZE"]) if "RX_BUFFER_SIZE" in mf else 0))
 txBuf = str(max(64, int(mf["TX_BUFFER_SIZE"]) if "TX_BUFFER_SIZE" in mf else 0))
 
 build_flags = env.get('BUILD_FLAGS')
-build_flags.append("-DSERIAL_RX_BUFFER_SIZE=" + rxBuf)
-build_flags.append("-DSERIAL_TX_BUFFER_SIZE=" + txBuf)
+build_flags.append(f"-DSERIAL_RX_BUFFER_SIZE={rxBuf}")
+build_flags.append(f"-DSERIAL_TX_BUFFER_SIZE={txBuf}")
 env.Replace(BUILD_FLAGS=build_flags)

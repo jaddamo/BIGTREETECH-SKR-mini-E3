@@ -12,7 +12,7 @@ assert os.path.isdir("buildroot/share/PlatformIO/variants")
 
 mcu_type = board.get("build.mcu")[:-2]
 variant = board.get("build.variant")
-series = mcu_type[:7].upper() + "xx"
+series = f"{mcu_type[:7].upper()}xx"
 variant_dir = os.path.join(FRAMEWORK_DIR, "variants", variant)
 
 source_dir = os.path.join("buildroot/share/PlatformIO/variants", variant)

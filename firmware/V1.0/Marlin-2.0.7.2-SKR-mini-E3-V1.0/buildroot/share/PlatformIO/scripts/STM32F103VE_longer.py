@@ -10,7 +10,7 @@ env['CPPDEFINES'].append(("VECT_TAB_ADDR", "0x08010000"))
 custom_ld_script = os.path.abspath("buildroot/share/PlatformIO/ldscripts/STM32F103VE_longer.ld")
 for i, flag in enumerate(env["LINKFLAGS"]):
     if "-Wl,-T" in flag:
-        env["LINKFLAGS"][i] = "-Wl,-T" + custom_ld_script
+        env["LINKFLAGS"][i] = f"-Wl,-T{custom_ld_script}"
     elif flag == "-T":
         env["LINKFLAGS"][i + 1] = custom_ld_script
 
@@ -18,7 +18,7 @@ for i, flag in enumerate(env["LINKFLAGS"]):
 # Rename ${PROGNAME}.bin and save it as 'project.bin' (No encryption on the Longer3D)
 def encrypt(source, target, env):
     firmware = open(target[0].path, "rb")
-    marlin_alfa = open(target[0].dir.path +'/project.bin', "wb")
+    marlin_alfa = open(f'{target[0].dir.path}/project.bin', "wb")
     length = os.path.getsize(target[0].path)
     position = 0
     try:
